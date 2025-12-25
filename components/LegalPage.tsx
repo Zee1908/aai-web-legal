@@ -41,6 +41,10 @@ export default function LegalPage({ type, title }: LegalPageProps) {
           let cleanContent = data.content || '';
           cleanContent = cleanContent.replace(/\\n/g, '\n');
           
+          // Pre-process links to avoid Markdown sanitizer stripping 'internal:' protocol
+          cleanContent = cleanContent.replace(/\(internal:privacy_policy\)/g, '(/privacy)');
+          cleanContent = cleanContent.replace(/\(internal:terms_of_service\)/g, '(/terms)');
+          
           setContent(cleanContent)
           setVersion(data.version)
           setEffectiveDate(data.effective_from ? new Date(data.effective_from).toLocaleDateString() : '')
