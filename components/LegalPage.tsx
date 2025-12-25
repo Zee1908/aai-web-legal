@@ -86,7 +86,27 @@ export default function LegalPage({ type, title }: LegalPageProps) {
                <p className="mt-4 text-sm text-gray-600">Please check your internet connection or try again later.</p>
              </div>
           ) : (
-            <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm, remarkBreaks]}
+              components={{
+                a: ({node, ...props}) => {
+                  let href = props.href || '';
+                  
+                  // Handle internal app links
+                  if (href === 'internal:privacy_policy') {
+                    href = '/privacy';
+                  } else if (href === 'internal:terms_of_service') {
+                    href = '/terms';
+                  }
+                  
+                  return (
+                    <a {...props} href={href} className="text-red-600 hover:underline font-medium">
+                      {props.children}
+                    </a>
+                  );
+                }
+              }}
+            >
               {content || '_No content available._'}
             </ReactMarkdown>
           )}
