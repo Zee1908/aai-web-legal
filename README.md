@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Legal Portal for All About Insurance
 
-## Getting Started
+This is a lightweight Next.js application to host the Terms of Service and Privacy Policy. It fetches the content directly from your Supabase database, ensuring it is always in sync with the mobile app.
 
-First, run the development server:
+## Local Development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  Navigate to this directory:
+    ```bash
+    cd web-legal
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  Install dependencies (if not already done):
+    ```bash
+    npm install
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3.  Run the development server:
+    ```bash
+    npm run dev
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4.  Open [http://localhost:3000/terms](http://localhost:3000/terms) or [http://localhost:3000/privacy](http://localhost:3000/privacy) in your browser.
 
-## Learn More
+## Deployment to Vercel
 
-To learn more about Next.js, take a look at the following resources:
+1.  Go to [Vercel](https://vercel.com) and sign up/login.
+2.  Click **"Add New..."** -> **"Project"**.
+3.  Import your GitHub repository.
+4.  In the "Configure Project" screen, select the **Root Directory** as `web-legal` (click Edit next to Root Directory).
+5.  **Environment Variables**:
+    You must add the following environment variables in the Vercel dashboard (copy them from `.env.local` or your project settings):
+    - `NEXT_PUBLIC_SUPABASE_URL`
+    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+6.  Click **Deploy**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Your legal pages will be live at `https://[your-project].vercel.app/terms` and `.../privacy`.
